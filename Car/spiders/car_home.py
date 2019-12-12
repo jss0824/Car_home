@@ -20,15 +20,12 @@ class CarHomeSpider(scrapy.Spider):
 
     def start_requests(self):
         '''
-        某些品牌会有多页数据， 只需在selenium获取源码之后判断一下是否有第二页按钮，更改一下代码就
-        可以实现自动翻页功能，此项目只是自己爬着娱乐就不加上这个功能了
+        某些品牌会有多页数据， 只需在selenium获取源码之后判断一下是否有第二页按钮
         :return:
         '''
-        #想爬取哪个页面就加入url
+        #导入所有汽车品牌主页
         url_dict = brand_url_dict()
-        # url_dict = {
-        #           '宝马':'https://car.autohome.com.cn//price/brand-15.html',
-        # }
+
         for url in url_dict:
             yield Request(url_dict[url], meta={'brand':url},callback=self.parse, headers=self.headers, dont_filter=True)
     def parse(self, response):
@@ -50,10 +47,10 @@ class CarHomeSpider(scrapy.Spider):
         for i in page:
             for url in i:
                 pages_list.append('https://car.autohome.com.cn/' + url.attrs['href'])
-                # pages_dict[url.string] = 'https://car.autohome.com.cn/' + url.attrs['href']
+
         pages = pages_list[2:-1]
-        print('字典',pages)
-        print('字段长度',len(pages))
+        # print('字典',pages)
+        # print('字段长度',len(pages))
 
         if len(pages) == 0:
             for i in data:
