@@ -11,7 +11,7 @@ import hashlib
 
 class CarPipeline(object):
     def process_item(self, item, spider):
-        conn = pymysql.connect(host="106.13.169.200", user="root", passwd="fool123000!", db="汽车之家")
+        conn = pymysql.connect(host="106.13.169.200", user="root", passwd="", db="汽车之家")
         cursor = conn.cursor()
         insertTime = ('').join(item['insertTime'])
         brand = ('').join(item['brand'])

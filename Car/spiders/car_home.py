@@ -21,7 +21,7 @@ class CarHomeSpider(scrapy.Spider):
         '''
         某些品牌会有多页数据， 只需在selenium获取源码之后判断一下是否有第二页按钮，更改一下代码就
         可以实现自动翻页功能，此项目只是自己爬着娱乐就不加上这个功能了
-        :return: 
+        :return:
         '''
         #想爬取哪个页面就加入url
         url_dict = {
